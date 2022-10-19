@@ -4,7 +4,7 @@ import java.awt.BorderLayout;
 public class GUI{
 
     private int count = 0;
-    
+
     public GUI(){
     
     JFrame frame = new JFrame();
@@ -24,7 +24,7 @@ public class GUI{
     frame.setVisible(true);
 }
 
-    public static void Main (String[] args){
+    public static void Main(String[] args){
         new GUI();
     }
 }
