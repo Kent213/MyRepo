@@ -10,43 +10,64 @@ class Calculator{
  * Subtraction
  * Recursion - ?
  */
-Scanner scan = new Scanner(System.in);
-private double num;
+static Scanner scan = new Scanner(System.in);
+private static double firstNum;
+private static double secondNum;
+private static double answer;
+private static int temp;
+static String equation;
 
-public void calculate(){
-String equation = scan.nextLine();
+public static void calculate(){
+System.out.println("What would you like to calculate?");
+equation = scan.nextLine();
+equation = equation.replace(" ", "");
+checkProgress();
+}
+public static void checkProgress(){
+    try{
+        answer = Double.parseDouble(equation);
+        System.out.println(answer);
+    }
+    catch(NumberFormatException ex){
+        doMath();
+    }
+}
+public static void checkParenthesis(){
 
 }
-public void checkParenthesis(){
+public static void doAddition(){
+    while(equation.indexOf("+")!=-1){
+    temp = equation.indexOf("+")-1;
+
+        //finds end index of first number
+        
+        while(Character.isDigit(equation.charAt(temp))||equation.substring(temp--,temp).equals(".")){
+            //temp--;
+            //keeps going out of bounds
+        }
+    }
+        //creates first number
+        //firstNum = Double.parseDouble(equation.substring(temp, equation.indexOf("+")));
+}
+
+public static void doSubtraction(){
 
 }
-public double doAddition(){
-
-return num;
-}
-
-public double doSubtraction(){
-    return num;
+public static void doMultiplication(){
 
 }
-public double doMultiplication(){
-    return num;
+public static void doDivision(){
 
 }
-public double doDivision(){
-    return num;
+public static void doExponent(){
 
 }
-public double doExponent(){
-    return num;
-}
-public void doMath(){
-//might need to say string.doAddition, string.doSubtraction, etc
-doAddition();
-doSubtraction();
+public static void doMath(){
+doExponent();
 doMultiplication();
 doDivision();
-doExponent();
+doAddition();
+doSubtraction();
 }
 public static void main(String[] args){
 calculate();
