@@ -16,21 +16,26 @@ private static double secondNum;
 private static double answer;
 private static int temp;
 static String equation;
+//have not used arrays below
 static String[] numbers = new String[]{"1","2","3","4","5","6","7","8","9","0","."};
-static String[] operands = new String[]{"+","-","*","/","^"};
+static String[] operands = new String[]{"+","-","*","/","^","(",")"};
 
 public static void calculate(){
 System.out.println("What would you like to calculate?");
 equation = scan.nextLine();
 equation = equation.replace(" ", "");
-//check if equation has invalid characters
-//add all terms to an array list
-checkProgress();
+equation = equation.replace("--", "+");
+equation = equation.replace("+-", "-");
+
+//another method to code it
+//add all terms to an array list and seperate numbers and operators
+
 }
+//idk rly know what this is for - maybe to check if invalid input
 public static void checkProgress(){
     try{
         answer = Double.parseDouble(equation);
-        System.out.println(answer);
+        System.out.println("Answer: " + answer);
     }
     catch(NumberFormatException ex){
         doMath();
@@ -80,7 +85,7 @@ public static void doAddition(){
 }
 
 public static void doSubtraction(){
-
+    
 }
 public static void doMultiplication(){
 
