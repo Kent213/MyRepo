@@ -16,11 +16,15 @@ private static double secondNum;
 private static double answer;
 private static int temp;
 static String equation;
+static String[] numbers = new String[]{"1","2","3","4","5","6","7","8","9","0","."};
+static String[] operands = new String[]{"+","-","*","/","^"};
 
 public static void calculate(){
 System.out.println("What would you like to calculate?");
 equation = scan.nextLine();
 equation = equation.replace(" ", "");
+//check if equation has invalid characters
+//add all terms to an array list
 checkProgress();
 }
 public static void checkProgress(){
@@ -36,18 +40,43 @@ public static void checkParenthesis(){
 
 }
 public static void doAddition(){
-    while(equation.indexOf("+")!=-1){
-    temp = equation.indexOf("+")-1;
+    if(equation.indexOf('+')!=-1){
+    temp = equation.indexOf('+')-1;
 
         //finds end index of first number
-        
         while(Character.isDigit(equation.charAt(temp))||equation.substring(temp--,temp).equals(".")){
-            //temp--;
-            //keeps going out of bounds
+            if(temp-1>=0){
+                temp--;
+            } 
+            else{
+                break;
+            }
+            //might need more conditions for else - break statement
         }
-    }
         //creates first number
-        //firstNum = Double.parseDouble(equation.substring(temp, equation.indexOf("+")));
+        firstNum = Double.parseDouble(equation.substring(temp, equation.indexOf('+')));
+        System.out.println("1st = " + firstNum);
+
+        temp = equation.indexOf('+')+1;
+
+        //finds end index of first number
+        while(Character.isDigit(equation.charAt(temp))||equation.substring(temp,temp++).equals(".")){
+            if(temp++<equation.length()-1){
+                temp++;
+            System.out.println("temp = " + temp);
+            } 
+            else{
+                break;
+            }
+            //might need more conditions for else - break statement
+        }
+        //creates first number
+        secondNum = Double.parseDouble(equation.substring(equation.indexOf('+')+1,temp));
+        System.out.println("2nd = " + secondNum);
+        answer = firstNum+=secondNum;
+        System.out.println("answer = " + answer);
+
+    }
 }
 
 public static void doSubtraction(){
