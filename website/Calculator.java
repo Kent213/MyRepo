@@ -26,7 +26,8 @@ equation = scan.nextLine();
 equation = equation.replace(" ", "");
 equation = equation.replace("--", "+");
 equation = equation.replace("+-", "-");
-
+System.out.println("Equation: " + equation);
+doMath();
 //another method to code it
 //add all terms to an array list and seperate numbers and operators
 
@@ -41,9 +42,11 @@ public static void checkProgress(){
         doMath();
     }
 }
+
 public static void checkParenthesis(){
 
 }
+
 public static void doAddition(){
     if(equation.indexOf('+')!=-1){
     temp = equation.indexOf('+')-1;
@@ -87,15 +90,19 @@ public static void doAddition(){
 public static void doSubtraction(){
     
 }
+
 public static void doMultiplication(){
 
 }
+
 public static void doDivision(){
 
 }
+
 public static void doExponent(){
 
 }
+
 public static void doMath(){
 doExponent();
 doMultiplication();
@@ -103,7 +110,9 @@ doDivision();
 doAddition();
 doSubtraction();
 }
+
 public static void main(String[] args){
 calculate();
 }
+
 }
