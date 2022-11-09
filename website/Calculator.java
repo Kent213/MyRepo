@@ -72,7 +72,7 @@ public static void doAddition(){
         firstIndex = equation.indexOf('+')-1;
         //finds end index of first number
         while(Character.isDigit(equation.charAt(firstIndex))||equation.charAt(firstIndex)==('.')){
-            if(firstIndex<=1){
+            if(firstIndex==1){
                 firstIndex--;
                 break;
             } 
@@ -192,7 +192,12 @@ public static void doMultiplication(){
         System.out.println("firstIndex: " + firstIndex + " " + "secondIndex: " + secondIndex + " " + "Boolean: " + beginning);
 
         if(!beginning){
-        equation = equation.substring(0,firstIndex+1)+answer+equation.substring(secondIndex,equation.length());
+            if(equation.charAt(firstIndex)==('-')){
+                equation = equation.substring(0,firstIndex) + "+" + answer + equation.substring(secondIndex, equation.length());
+            }
+            else{
+                equation = equation.substring(0,firstIndex+1)+answer+equation.substring(secondIndex,equation.length());
+            }
         }
         else{
         equation = answer+equation.substring(secondIndex,equation.length());
@@ -251,12 +256,20 @@ public static void doDivision(){
         answer = (firstNum/secondNum);
         System.out.println("answer = " + answer);
         System.out.println("firstIndex: " + firstIndex + " " + "secondIndex: " + secondIndex + " " + "Boolean: " + beginning);
+
+        System.out.println("LOOK HERE: " + equation.charAt(firstIndex));
         if(!beginning){
-        equation = equation.substring(0,firstIndex+1)+answer+equation.substring(secondIndex,equation.length());
+            if(equation.charAt(firstIndex)==('-')){
+                equation = equation.substring(0,firstIndex) + "+" + answer + equation.substring(secondIndex, equation.length());
+            }
+        else{
+            equation = equation.substring(0,firstIndex+1)+answer+equation.substring(secondIndex,equation.length());
         }
+    }
         else{
         equation = answer+equation.substring(secondIndex,equation.length());
         }
+        
         System.out.println("Equation: " + equation);
         System.out.println("----------------------------");
     }
@@ -335,8 +348,8 @@ doAddition();
 }
 
 public static void main(String[] args){
-//calculate();
-quadraticSolver();
+calculate();
+//quadraticSolver();
 }
 
 }
