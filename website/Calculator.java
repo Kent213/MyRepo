@@ -49,69 +49,20 @@ public static void checkParenthesis(){
 }
 
 public static void quadraticSolver(){
-System.out.println("What would you like to calculate?");
-equation = scan.nextLine();
-equation = equation.replace(" ", "");
     double a = 1;
-    double b = 1;
-    double c = 1;
-
-    //find a
-    firstIndex = equation.indexOf("x^2")-1;
-    while(Character.isDigit(equation.charAt(firstIndex))||equation.charAt(firstIndex)==('.')){
-        if(firstIndex==1){
-            firstIndex--;
-            break;
-        } 
-        else if(firstIndex>0){
-            firstIndex--;
-        }
-        else{
-            break;
-        }
-    }
-
-    if(!equation.substring(firstIndex, equation.indexOf("x^2")).equals("")){
-        a = Double.parseDouble(equation.substring(firstIndex, equation.indexOf("x^2")));
-    }
-
-    System.out.println("a: " + a);
-    equation = equation.substring(equation.indexOf("x")+3,equation.length());
-    System.out.println("Equation: " + equation);
-
-    //find b
-    firstIndex = equation.indexOf("x")-1;
-    while(Character.isDigit(equation.charAt(firstIndex))||equation.charAt(firstIndex)==('.')){
-        if(firstIndex==1){
-            firstIndex--;
-            break;
-        } 
-        else if(firstIndex>0){
-            firstIndex--;
-        }
-        else{
-            break;
-        }
-    }
-
-    if(!equation.substring(firstIndex, equation.indexOf("x")).equals("")){
-    b = Double.parseDouble(equation.substring(firstIndex, equation.indexOf("x")));
-    }
-    System.out.println("b: " + b);
-    equation = equation.substring(equation.indexOf("x")+1,equation.length());
-    System.out.println("Equation: " + equation);
-
-    //find c
-    if(!equation.substring(firstIndex, equation.indexOf("x^2")).equals("")){
-    c = Double.parseDouble(equation);
-    }
-    System.out.println("c: " + c);
-
+    double b = 0;
+    double c = 0;
+    System.out.println("Quadratic Calculator: ax^2+bx+c");
+    System.out.println("Please Enter a: ");
+    a = scan.nextDouble();
+    System.out.println("Please Enter b: ");
+    b = scan.nextDouble();
+    System.out.println("Please Enter c: ");
+    c = scan.nextDouble();
     //formula
     double root1 = -b+Math.sqrt(b*b-4*a*c)/(2*a);
     double root2 = -b-Math.sqrt(b*b-4*a*c)/(2*a);
-    System.out.println("root1: " + root1);
-    System.out.println("root2: " + root2);
+    System.out.println("The roots of " + a + "(x^2) + " + b + "x + " + c + " are: " + root1 + ", " + root2);
 
 }
 
