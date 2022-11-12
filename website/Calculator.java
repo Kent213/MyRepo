@@ -1,15 +1,11 @@
 import java.util.Scanner;
 class Calculator{
+
 /*
     TO-DO
  * Parenthesis
- * Exponent
- * Muliplication
- * Division
- * Addition
- * Subtraction
- * Recursion - ?
  */
+
 static Scanner scan = new Scanner(System.in);
 private static double firstNum;
 private static double secondNum;
@@ -17,9 +13,6 @@ private static double answer;
 private static int firstIndex;
 private static int secondIndex;
 static String equation;
-//have not used arrays below
-static String[] numbers = new String[]{"1","2","3","4","5","6","7","8","9","0","."};
-static String[] operands = new String[]{"+","-","*","/","^","(",")"};
 
 public static void calculate(){
 System.out.println("What would you like to calculate?");

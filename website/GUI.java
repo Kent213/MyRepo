@@ -6,7 +6,7 @@ private JFrame frame;
 private JPanel panel;
 private JButton button;
 private JLabel label;
-    private int count = 0;
+private int count = 0;
 
     public GUI(){
     frame = new JFrame();
