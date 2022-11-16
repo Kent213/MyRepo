@@ -11,23 +11,24 @@ public class WheelGamePanel{
          int displayIndex;
          int numHits;
          int spinScore;
-        boolean running;
-        boolean turn;
-
-        public WheelGamePanel(){
-        }
-        //obj creation and game setup
-        WheelGamePanel user1 = new WheelGamePanel();
-        WheelGamePanel user2 = new WheelGamePanel();
+         int score;
+        boolean running = true;
+        boolean turn = true;
+        
         Player player1 = new Player("temp", 0);
         Player player2 = new Player("temp", 0);
+        public WheelGamePanel(Player a, Player b){
+            player1 = a;
+            player2 = b;
+        }
+        
         public void gameSetup(){
             System.out.println("Player 1 please enter your name: ");
             player1.setName(scan.nextLine());
-            System.out.println("Player 1 please enter your name: ");
+            System.out.println("Player 2 please enter your name: ");
             player2.setName(scan.nextLine());
         }
-        //I want this to be static
+        
         public void rewrite(){
             //add an extra space so it finds the last word
             tempPhrase = phrase + " ";
@@ -44,6 +45,8 @@ public class WheelGamePanel{
     }
        
         public void guessing(){
+            boolean guessing = true;
+            while(guessing){
             tempPhrase = "";
             for(int i = 0; i<phrase.length(); i++){
                 tempPhrase += phrase.substring(i,i+1) + " ";
@@ -51,8 +54,10 @@ public class WheelGamePanel{
             tempPhrase = tempPhrase.toUpperCase();
             System.out.println(tempPhrase);
             while(display.contains("_")){
+            spin();
             System.out.println("Please guess a letter");
             guess = scan.nextLine().toUpperCase();
+            numHits = 0;
             if(tempPhrase.contains((guess))){
                 while(tempPhrase.contains((guess))){
                   guessIndex = tempPhrase.indexOf(guess);
@@ -60,21 +65,52 @@ public class WheelGamePanel{
                   tempPhrase = tempPhrase.replaceFirst(guess,"~");
                   numHits++;
                 }
+                calculateScore();
             }
             else{
                 System.out.println("Sorry, that was not in the phrase.");
+                System.out.println(player1.getName() + "'s score: " + player1.getScore());
+                System.out.println(player2.getName() + "'s score: " + player2.getScore());
+                if(turn){
+                    turn = false;
+                    guessing = false;
+                    break;
+
+                }
+                else{
+                    turn = true;
+                    guessing = false;
+                    break;
+
+                }
             }
             System.out.println(display);
             System.out.println(tempPhrase);
         }
     }
+}
     public void solvePhrase(){
-        if(scan.nextLine().equals(phrase)){
-            //fill out entire phrase
+        System.out.println("What is the phrase?");
+        //if guess is correct
+        if(scan.nextLine().toUpperCase().equals(phrase.toUpperCase())){
+            for(int i = 0; i<display.length(); i++){
+                if(display.charAt(i)=='_'){
+                    numHits++;
+                }
+            }
+            calculateScore();
+            //prints out filled out display
+            tempPhrase = "";
+            for(int i = 0; i<phrase.length(); i++){
+                tempPhrase += phrase.substring(i,i+1) + " ";
+            }
+            tempPhrase = tempPhrase.toUpperCase();
+            System.out.println(tempPhrase);
             running = false;
-            System.out.println("Game Over");
+            System.out.println("Conrgatulations!");
         }
         else{
+            System.out.println("Sorry that is incorrect");
             if(turn){
                 turn = false;
             }
@@ -84,11 +120,10 @@ public class WheelGamePanel{
         }
     }
     
-public int spin(){
-        int spinScore = 0;
+    public void spin(){
         spinScore = (int)(Math.random()*16);
         if(spinScore!=0){
-            spinScore*=1000;
+            spinScore*=100;
         }else{
             System.out.println("You are bankrupt");
             player1.setScore(0);
@@ -100,26 +135,39 @@ public int spin(){
                 turn = true;
             }
         }
-        return spinScore;
-}
+        System.out.println("You spun a " + spinScore);
+    }
+       public boolean getTurn(){
+        return turn;
+       }
 
-    public void playing(){
-        while(running){
-            while(turn){
-                user1.spin();
-                user1.guessing();
-                player1.setScore(player1.getScore()+(spinScore*numHits));
+       public boolean getRunning(){
+        return running;
+       }
+
+       public void calculateScore(){
+        //adds score
+        if(spinScore!=0){
+        System.out.println("numhits: " + numHits);
+        score = spinScore*numHits;
+        System.out.println("Score: " + score);
+            if(turn){
+                player1.setScore(player1.getScore() + score);
             }
-            while(!turn){
-                user2.spin();
-                user2.guessing();
-                player2.setScore(player1.getScore()+(spinScore*numHits));
+            else{
+                player2.setScore(player2.getScore() + score);
             }
         }
-    }
-    
-
-    public static void main(String args[]){
-        
+        //bankrupt
+        else{
+            if(turn){
+                player1.setScore(0);
+            }
+            else{
+                player2.setScore(0);
+            }
+        }
+            System.out.println(player1.getName() + "'s score: " + player1.getScore());
+            System.out.println(player2.getName() + "'s score: " + player2.getScore());
     }
 }
