@@ -46,14 +46,14 @@ public class WheelGamePanel{
        
         public void guessing(){
             boolean guessing = true;
-            while(guessing){
+            //while(guessing){
             tempPhrase = "";
             for(int i = 0; i<phrase.length(); i++){
                 tempPhrase += phrase.substring(i,i+1) + " ";
             }
             tempPhrase = tempPhrase.toUpperCase();
-            System.out.println(tempPhrase);
-            while(display.contains("_")){
+            //System.out.println(tempPhrase);
+            //while(display.contains("_")){
             spin();
             System.out.println("Please guess a letter");
             guess = scan.nextLine().toUpperCase();
@@ -74,20 +74,17 @@ public class WheelGamePanel{
                 if(turn){
                     turn = false;
                     guessing = false;
-                    break;
-
+                    //break;
                 }
                 else{
                     turn = true;
                     guessing = false;
-                    break;
-
+                    //break;
                 }
             }
             System.out.println(display);
-            System.out.println(tempPhrase);
-        }
-    }
+        //}
+    //}
 }
     public void solvePhrase(){
         System.out.println("What is the phrase?");

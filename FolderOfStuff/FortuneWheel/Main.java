@@ -30,7 +30,20 @@ public class Main {
             }
             while(!game.getTurn()){
                 System.out.println(game.player2.getName() + "'s turn: (GUESS) (SOLVE)");
-                game.guessing();
+                while(invalid){
+                    input = scan.nextLine().toUpperCase();
+                    if(input.equals("GUESS")){
+                        game.guessing();
+                        break;
+                    }
+                    else if(input.equals("SOLVE")){
+                        game.solvePhrase();
+                        break;
+                    }
+                    else{
+                        System.out.println("Invalid input. Please try again.");
+                    }
+                }
             }
         }
     }
