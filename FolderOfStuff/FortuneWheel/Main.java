@@ -11,7 +11,8 @@ public class Main {
         game.gameSetup();
         game.rewrite();
         while(game.getRunning()){
-            while(game.getTurn()){
+        System.out.println(game.getRunning());
+            if(game.getTurn()){
                 System.out.println(game.player1.getName() + "'s turn: (GUESS) (SOLVE)");
                 while(invalid){
                     input = scan.nextLine().toUpperCase();
@@ -28,7 +29,7 @@ public class Main {
                     }
                 }
             }
-            while(!game.getTurn()){
+            if(!game.getTurn()){
                 System.out.println(game.player2.getName() + "'s turn: (GUESS) (SOLVE)");
                 while(invalid){
                     input = scan.nextLine().toUpperCase();
@@ -44,7 +45,11 @@ public class Main {
                         System.out.println("Invalid input. Please try again.");
                     }
                 }
+                
             }
         }
+        System.out.println("Congratulations, " + game.player1.getName() + " won $" + game.player1.getScore());
+        System.out.println("Congratulations, " + game.player2.getName() + " won $" + game.player2.getScore());
+        
     }
 }

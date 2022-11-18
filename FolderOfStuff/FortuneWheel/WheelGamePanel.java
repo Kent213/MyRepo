@@ -2,18 +2,17 @@ package FolderOfStuff.FortuneWheel;
 import java.util.Scanner;
 public class WheelGamePanel{
     //make all of these not static later
-         final String phrase = "Hi my name is Kent";
-         String tempPhrase;
-         String display = "";
-         Scanner scan = new Scanner(System.in);
-         String guess;
-         int guessIndex;
-         int displayIndex;
-         int numHits;
-         int spinScore;
-         int score;
-        boolean running = true;
-        boolean turn = true;
+        private final String phrase = "This is my super duper unbreakable military grade encrypted secret message that you will never guess";
+        private String tempPhrase;
+        private String display = "";
+        private Scanner scan = new Scanner(System.in);
+        private String guess;
+        private int guessIndex;
+        private int numHits;
+        private int spinScore;
+        private int score;
+        private boolean running = true;
+        private boolean turn = true;
         
         Player player1 = new Player("temp", 0);
         Player player2 = new Player("temp", 0);
@@ -45,9 +44,9 @@ public class WheelGamePanel{
     }
        
         public void guessing(){
-            boolean guessing = true;
-            //while(guessing){
-            tempPhrase = "";
+            if(display.contains("_")){
+                tempPhrase = "";
+                guess = "";
             for(int i = 0; i<phrase.length(); i++){
                 tempPhrase += phrase.substring(i,i+1) + " ";
             }
@@ -55,10 +54,14 @@ public class WheelGamePanel{
             //System.out.println(tempPhrase);
             //while(display.contains("_")){
             spin();
+            if(spinScore!=0){
+            numHits = 0;
+                while(guess.length()!=1){
             System.out.println("Please guess a letter");
             guess = scan.nextLine().toUpperCase();
-            numHits = 0;
+                }
             if(tempPhrase.contains((guess))){
+                //updates display and finds number of occurances of guess
                 while(tempPhrase.contains((guess))){
                   guessIndex = tempPhrase.indexOf(guess);
                   display = display.substring(0,guessIndex) + guess + display.substring(guessIndex+1,tempPhrase.length());
@@ -73,20 +76,20 @@ public class WheelGamePanel{
                 System.out.println(player2.getName() + "'s score: " + player2.getScore());
                 if(turn){
                     turn = false;
-                    guessing = false;
-                    //break;
                 }
                 else{
                     turn = true;
-                    guessing = false;
-                    //break;
                 }
             }
             System.out.println(display);
-        //}
-    //}
+        }
+    }
+        else{
+            running = false;
+        }
 }
     public void solvePhrase(){
+        spin();
         System.out.println("What is the phrase?");
         //if guess is correct
         if(scan.nextLine().toUpperCase().equals(phrase.toUpperCase())){
@@ -104,7 +107,6 @@ public class WheelGamePanel{
             tempPhrase = tempPhrase.toUpperCase();
             System.out.println(tempPhrase);
             running = false;
-            System.out.println("Conrgatulations!");
         }
         else{
             System.out.println("Sorry that is incorrect");
@@ -138,16 +140,26 @@ public class WheelGamePanel{
         return turn;
        }
 
+       public boolean checkRunning(){
+        if(display.contains("_")){
+            running = true;
+        }
+        else{
+            running = false;
+        }
+        return running;
+       }
        public boolean getRunning(){
         return running;
        }
-
+public String getDisplay(){
+    return display;
+}
        public void calculateScore(){
         //adds score
         if(spinScore!=0){
         System.out.println("numhits: " + numHits);
         score = spinScore*numHits;
-        System.out.println("Score: " + score);
             if(turn){
                 player1.setScore(player1.getScore() + score);
             }
