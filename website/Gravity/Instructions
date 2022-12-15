@@ -2,6 +2,7 @@ Gravity Text Game
 By Kent Hocaoglu
 
 Here is a list of common methods that can be used with ArrayLists in java:
+
 add() 					adds a String the the end of the list
 get(int) 				returns the value at a given index
 clear() 				clears the list
@@ -14,13 +15,20 @@ And many more!
 Instructions: 
 1a) Fill in the partially created ArrayList with the missing data types 
 1b) Then create a second array list called “answers” on your own. *For our purposes we want them to both store strings.
+
 2a) Use the methods above to add the data to the terms list
 2b) Use the methods above to add the data to the answers list
+
 3) Set the array “accuracy” to match the length of the terms ArrayList
+
 4a) Enter the range that will allow Math.random to select a random index from your terms array list *remember that lists start at index zero and Math.random goes from the first index inclusive to the second index exclusive
 4b) Use the methods listed above the return the value of terms at the index found in 4a
+
 5) Implement the method that will return the value from the array list “answers” that matches the current term
+
 6) Complete the method that will return the index of a value from the array list “terms” 
+
 7) Enter the upper range to allow this loop to traverse the entire terms list
+
 8) Use a method listed above to print the values of the terms array list at index i
 
