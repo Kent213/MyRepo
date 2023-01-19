@@ -1,0 +1,6 @@
+{
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "FolderOfStuff/Library/lib/sinbad.jar"
+    ]
+}
